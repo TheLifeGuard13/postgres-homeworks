@@ -1,35 +1,33 @@
 """Скрипт для заполнения данными таблиц в БД Postgres."""
 import csv
+import os
+from pathlib import Path
+
 import psycopg2
+from dotenv import load_dotenv
 
+EMPLOYEES_PATH = Path(__file__).parent.parent.joinpath("homework-1", "north_data", "employees_data.csv")
+CUSTOMERS_PATH = Path(__file__).parent.parent.joinpath("homework-1", "north_data", "customers_data.csv")
+ORDERS_PATH = Path(__file__).parent.parent.joinpath("homework-1", "north_data", "orders_data.csv")
 
-conn = psycopg2.connect(
-    host="localhost",
-    database="north",
-    user="postgres",
-    password="-8Nb7AL1F7"
-)
+load_dotenv()
+password = os.getenv("PASSWORD")
+conn = psycopg2.connect(host="localhost", database="north", user="postgres", password=password)
 
-with open('./north_data/employees_data.csv') as file:
+with open(EMPLOYEES_PATH) as file:
     reader = csv.reader(file)
-    employees_data = []
-    for line in reader:
-        cor_line = tuple(line)
-        employees_data.append(cor_line)
+    employees_data = [tuple(line) for line in reader]
+    print(employees_data)
 
-with open('./north_data/customers_data.csv') as file:
+with open("./north_data/customers_data.csv") as file:
     reader = csv.reader(file)
-    customers_data = []
-    for line in reader:
-        cor_line = tuple(line)
-        customers_data.append(cor_line)
+    customers_data = [tuple(line) for line in reader]
+    print(customers_data)
 
-with open('./north_data/orders_data.csv') as file:
+with open("./north_data/orders_data.csv") as file:
     reader = csv.reader(file)
-    orders_data = []
-    for line in reader:
-        cor_line = tuple(line)
-        orders_data.append(cor_line)
+    orders_data = [tuple(line) for line in reader]
+    print(orders_data)
 
 cur = conn.cursor()
 
