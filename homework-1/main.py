@@ -19,12 +19,12 @@ with open(EMPLOYEES_PATH) as file:
     employees_data = [tuple(line) for line in reader]
     print(employees_data)
 
-with open("./north_data/customers_data.csv") as file:
+with open(CUSTOMERS_PATH) as file:
     reader = csv.reader(file)
     customers_data = [tuple(line) for line in reader]
     print(customers_data)
 
-with open("./north_data/orders_data.csv") as file:
+with open(ORDERS_PATH) as file:
     reader = csv.reader(file)
     orders_data = [tuple(line) for line in reader]
     print(orders_data)
