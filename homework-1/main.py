@@ -17,17 +17,14 @@ conn = psycopg2.connect(host="localhost", database="north", user="postgres", pas
 with open(EMPLOYEES_PATH) as file:
     reader = csv.reader(file)
     employees_data = [tuple(line) for line in reader]
-    print(employees_data)
 
 with open(CUSTOMERS_PATH) as file:
     reader = csv.reader(file)
     customers_data = [tuple(line) for line in reader]
-    print(customers_data)
 
 with open(ORDERS_PATH) as file:
     reader = csv.reader(file)
     orders_data = [tuple(line) for line in reader]
-    print(orders_data)
 
 cur = conn.cursor()
 
